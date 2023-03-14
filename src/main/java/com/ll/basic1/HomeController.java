@@ -74,6 +74,24 @@ public class HomeController {
         return id + "번 사람이 삭제되었습니다.";
     }
 
+    @GetMapping("/home/modifyPerson")
+    @ResponseBody
+    public String modifyPerson(int id, String name, int age) {
+        Person found = people.stream()
+                .filter(e -> e.getId() == id)
+                .findFirst()
+                .orElse(null);
+
+        if(found == null) {
+            return id + "번 사람이 존재하지 않습니다.";
+        }
+
+        found.setName(name);
+        found.setAge(age);
+
+        return id + "번 사람이 수정되었습니다.";
+    }
+
     @GetMapping("/home/people")
     @ResponseBody
     public List<Person> showPeople() {
