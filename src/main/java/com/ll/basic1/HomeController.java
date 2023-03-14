@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
+    private int index;
+
+    public HomeController() {
+        index = 0;
+    }
 
     @GetMapping("/home/main")
     @ResponseBody
@@ -23,5 +28,11 @@ public class HomeController {
     @ResponseBody
     public String showMain3() {
         return "즐거웠습니다.";
+    }
+
+    @GetMapping("/home/increase")
+    @ResponseBody
+    public int showIncrease() {
+        return index++;
     }
 }
