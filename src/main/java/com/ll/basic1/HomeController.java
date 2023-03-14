@@ -53,9 +53,14 @@ public class HomeController {
 
     @GetMapping("/home/addPerson")
     @ResponseBody
-    public String showAddPerson(@RequestParam String name, @RequestParam int age) {
-        people.add(new Person(lastId, name, age));
-        return (lastId++) + "번 사람이 추가되었습니다.";
+    public String addPerson(@RequestParam String name, @RequestParam int age) {
+        Person person = new Person(name, age);
+
+        people.add(person);
+
+        System.out.println(person); // 객체가 생성되었는지 확인차 콘솔창에 출력
+
+        return person.getId() + "번 사람이 추가되었습니다.";
     }
 
     @GetMapping("/home/people")
