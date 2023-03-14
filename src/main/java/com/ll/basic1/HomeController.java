@@ -63,6 +63,17 @@ public class HomeController {
         return person.getId() + "번 사람이 추가되었습니다.";
     }
 
+    @GetMapping("/home/removePerson")
+    @ResponseBody
+    public String removePerson(int id) {
+        boolean removed = people.removeIf(person -> person.getId() == id);
+
+        if(!removed) {
+            return id + "번 사람이 존재하지 않습니다.";
+        }
+        return id + "번 사람이 삭제되었습니다.";
+    }
+
     @GetMapping("/home/people")
     @ResponseBody
     public List<Person> showPeople() {
