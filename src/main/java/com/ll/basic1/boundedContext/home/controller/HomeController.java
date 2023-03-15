@@ -19,12 +19,12 @@ import java.util.List;
 public class HomeController {
     private int index;
     private final List<Person> people;
-    @Autowired
-    private MemberService memberService;
+    private final MemberService memberService;
 
-    public HomeController() {
+    public HomeController(MemberService memberService) {
         index = 0;
         people = new ArrayList<>();
+        this.memberService = memberService;
     }
 
     @GetMapping("/home/main")
