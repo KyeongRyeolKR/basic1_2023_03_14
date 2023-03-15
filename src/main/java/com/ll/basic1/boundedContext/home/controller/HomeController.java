@@ -1,8 +1,11 @@
 package com.ll.basic1.boundedContext.home.controller;
 
+import com.ll.basic1.boundedContext.member.entity.Member;
+import com.ll.basic1.boundedContext.member.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,12 +18,12 @@ import java.util.List;
 @Controller
 public class HomeController {
     private int index;
-    private int lastId;
     private List<Person> people;
+    @Autowired
+    private MemberService memberService;
 
     public HomeController() {
         index = 0;
-        lastId = 1;
         people = new ArrayList<>();
     }
 
@@ -120,6 +123,12 @@ public class HomeController {
         resp.addCookie(new Cookie("count", count + 1 + ""));
 
         return count;
+    }
+
+    @GetMapping("/home/user1")
+    @ResponseBody
+    public Member showUser1() {
+        return memberService.findByUsername("user1");
     }
 
 }
