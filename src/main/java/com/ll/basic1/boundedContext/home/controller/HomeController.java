@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 public class HomeController {
     private int index;
-    private List<Person> people;
+    private final List<Person> people;
     @Autowired
     private MemberService memberService;
 

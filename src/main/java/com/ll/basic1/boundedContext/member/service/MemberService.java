@@ -3,18 +3,16 @@ package com.ll.basic1.boundedContext.member.service;
 import com.ll.basic1.base.RsData;
 import com.ll.basic1.boundedContext.member.entity.Member;
 import com.ll.basic1.boundedContext.member.repository.MemberRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
-
-    public MemberService() {
-        memberRepository = new MemberRepository();
-    }
 
     public RsData tryLogin(String username, String password) {
         Member member = memberRepository.findByUsername(username);
