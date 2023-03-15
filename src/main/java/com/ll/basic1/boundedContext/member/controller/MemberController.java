@@ -64,14 +64,14 @@ public class MemberController {
             loginedMemberId = Arrays.stream(req.getCookies())
                     .filter(cookie -> cookie.getName().equals("loginedMemberId"))
                     .map(Cookie::getValue)
-                    .mapToInt(Integer::parseInt)
+                    .mapToLong(Long::parseLong)
                     .findFirst()
                     .orElse(0);
         }
 
         boolean isLogined = loginedMemberId > 0;
 
-        if (isLogined == false)
+        if (!isLogined)
             return RsData.of("F-1", "로그인 후 이용해주세요.");
 
         Member member = memberService.findById(loginedMemberId);
