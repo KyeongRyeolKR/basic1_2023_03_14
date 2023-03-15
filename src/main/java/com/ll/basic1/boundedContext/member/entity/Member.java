@@ -1,4 +1,4 @@
-package com.ll.basic1.boundedContext.Member.controller;
+package com.ll.basic1.boundedContext.member.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
