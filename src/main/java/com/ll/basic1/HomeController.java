@@ -1,11 +1,15 @@
 package com.ll.basic1;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -96,5 +100,26 @@ public class HomeController {
     @ResponseBody
     public List<Person> showPeople() {
         return people;
+    }
+
+    @GetMapping("/home/cookie/increase")
+    @ResponseBody
+    public int showCookieIncrease(HttpServletRequest req, HttpServletResponse resp) {
+        int count = 0;
+
+        Cookie[] cookies = req.getCookies();
+
+        if(cookies != null) {
+            count = Arrays.stream(cookies)
+                    .filter(e -> e.getName().equals("count"))
+                    .map(Cookie::getValue)
+                    .mapToInt(Integer::parseInt)
+                    .findFirst()
+                    .orElse(0);
+        }
+
+        resp.addCookie(new Cookie("count", count + 1 + ""));
+
+        return count;
     }
 }
