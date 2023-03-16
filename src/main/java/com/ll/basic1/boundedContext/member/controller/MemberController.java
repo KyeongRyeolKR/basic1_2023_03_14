@@ -7,6 +7,7 @@ import com.ll.basic1.boundedContext.member.service.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -15,7 +16,7 @@ public class MemberController {
     private final MemberService memberService;
     private final Rq rq;
 
-    @GetMapping("/member/login")
+    @PostMapping("/member/login")
     @ResponseBody
     public RsData login(String username, String password) {
         if (username == null || username.trim().length() == 0) {
@@ -36,7 +37,7 @@ public class MemberController {
         return rsData;
     }
 
-    @GetMapping("/member/showLogin")
+    @GetMapping("/member/login")
     public String showLogin() {
         return "user/member/login";
     }
