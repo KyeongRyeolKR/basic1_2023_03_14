@@ -1,4 +1,4 @@
-package com.ll.basic1.boundedContext.member;
+package com.ll.basic1.base.rq;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
