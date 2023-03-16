@@ -4,12 +4,14 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.Arrays;
 
+@Component
+@RequestScope  // 이 객체는 요청마다 생성되고 요청이 끝나면 없어진다.
 @AllArgsConstructor
-@Getter
 public class Rq {
     private HttpServletRequest req;
     private HttpServletResponse resp;
